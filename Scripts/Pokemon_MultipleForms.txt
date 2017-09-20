@@ -1,0 +1,166 @@
+# Paste this at the bottom the Pokemon_MultipleForms script.
+
+MultipleForms.register(:ZYGARDE,{ # Since I have two Zygarde species, I have
+"getBaseStats"=>proc{|pokemon|    # made them two different Multiple Forms.
+   next if pokemon.form==0      # 50% Form
+   next [216,100,121,85,91,95]  # Complete Form
+},
+"height"=>proc{|pokemon|
+   next if pokemon.form==0      # 50% Form
+   next 4.5                     # Complete Form
+},
+"weight"=>proc{|pokemon|
+   next if pokemon.form==0      # 50% Form
+   next 610.0                   # Complete Form
+}
+})
+
+MultipleForms.register(:ZYGARDE10,{
+"getBaseStats"=>proc{|pokemon|
+   next if pokemon.form==0      # 10% Form
+   next [216,100,121,85,91,95]  # Complete Form
+},
+"height"=>proc{|pokemon|
+   next if pokemon.form==0      # 10% Form
+   next 4.5                     # Complete Form
+},
+"weight"=>proc{|pokemon|
+   next if pokemon.form==0      # 10% Form
+   next 610.0                   # Complete Form
+}
+})
+
+MultipleForms.register(:SILVALLY,{ # Sets up all types for Silvally to become.
+"type1"=>proc{|pokemon|
+   types=[:NORMAL,:FIGHTING,:FLYING,:POISON,:GROUND,
+          :ROCK,:BUG,:GHOST,:STEEL,:QMARKS,
+          :FIRE,:WATER,:GRASS,:ELECTRIC,:PSYCHIC,
+          :ICE,:DRAGON,:DARK,:FAIRY]
+   next getID(PBTypes,types[pokemon.form])
+},
+"type2"=>proc{|pokemon|
+   types=[:NORMAL,:FIGHTING,:FLYING,:POISON,:GROUND,
+          :ROCK,:BUG,:GHOST,:STEEL,:QMARKS,
+          :FIRE,:WATER,:GRASS,:ELECTRIC,:PSYCHIC,
+          :ICE,:DRAGON,:DARK,:FAIRY]
+   next getID(PBTypes,types[pokemon.form])
+},
+"getForm"=>proc{|pokemon|
+   next 1  if isConst?(pokemon.item,PBItems,:FIGHTINGMEMORY)
+   next 2  if isConst?(pokemon.item,PBItems,:FLYINGMEMORY)
+   next 3  if isConst?(pokemon.item,PBItems,:POISONMEMORY)
+   next 4  if isConst?(pokemon.item,PBItems,:GROUNDMEMORY)
+   next 5  if isConst?(pokemon.item,PBItems,:ROCKMEMORY)
+   next 6  if isConst?(pokemon.item,PBItems,:BUGMEMORY)
+   next 7  if isConst?(pokemon.item,PBItems,:GHOSTMEMORY)
+   next 8  if isConst?(pokemon.item,PBItems,:STEELMEMORY)
+   next 10 if isConst?(pokemon.item,PBItems,:FIREMEMORY)
+   next 11 if isConst?(pokemon.item,PBItems,:WATERMEMORY)
+   next 12 if isConst?(pokemon.item,PBItems,:GRASSMEMORY)
+   next 13 if isConst?(pokemon.item,PBItems,:ELECTRICMEMORY)
+   next 14 if isConst?(pokemon.item,PBItems,:PSYCHICMEMORY)
+   next 15 if isConst?(pokemon.item,PBItems,:ICEMEMORY)
+   next 16 if isConst?(pokemon.item,PBItems,:DRAGONMEMORY)
+   next 17 if isConst?(pokemon.item,PBItems,:DARKMEMORY)
+   next 18 if isConst?(pokemon.item,PBItems,:FAIRYMEMORY)
+   next 0
+}
+})
+
+MultipleForms.register(:MINIOR,{ # Separates Minior into Meteor and Core form.
+"baseStats"=>proc{|pokemon|
+   next if pokemon.form=0
+   next [60,100,60,120,100,60]
+},
+"height"=>proc{|pokemon|
+   next if pokemon.form==0
+   next 0.3
+},
+"weight"=>proc{|pokemon|
+   next if pokemon.form==0
+   next 0.3
+}
+})
+
+MultipleForms.register(:ORICORIO,{ # Separates Oricorio into 4 different forms.
+"type1"=>proc{|pokemon|
+   next if pokemon.form==0
+   case pokemon.form
+   when 1; next getID(PBTypes,:ELECTRIC)
+   when 2; next getID(PBTypes,:PSYCHIC)
+   when 3; next getID(PBTypes,:GHOST)
+   end
+},
+"type2"=>proc{|pokemon|
+   next if pokemon.form==0
+   case pokemon.form
+   when 1; next getID(PBTypes,:FLYING)
+   when 2; next getID(PBTypes,:FLYING)
+   when 3; next getID(PBTypes,:FLYING)
+   end
+}
+})
+
+MultipleForms.register(:WISHIWASHI,{ # Wishiwashi's powered up form.
+"baseStats"=>proc{|pokemon|
+  next if pokemon.form==0
+  next [45,140,130,30,140,135]
+},
+"height"=>proc{|pokemon|
+  next if pokemon.form==0
+  next 8.2
+},
+"weight"=>proc{|pokemon|
+  next if pokemon.form==0
+  next 78.6
+},
+"dexEntry"=>proc{|pokemon|
+   next if pokemon.form==0
+   next _INTL("At their appearance, even Gyarados will flee. Their united force makes them the demon of the sea.")
+}
+})
+
+MultipleForms.register(:ROCKRUFF,{
+"getForm"=>proc{|pokemon|
+   if PBDayNight.isDay?
+     next 0
+   else
+     next 1
+   end
+}
+})
+
+MultipleForms.register(:LYCANROC,{ # Lycanroc Day and Night.
+"getBaseStats"=>proc{|pokemon|
+   next if pokemon.form==0
+   next [85,115,75,82,55,75]
+},
+"getAbilityList"=>proc{|pokemon|
+   next [[getID(PBAbilities,:KEENEYE),0],
+         [getID(PBAbilities,:VITALSPIRIT),1],
+         [getID(PBAbilities,:NOGUARD),2]]
+},
+"height"=>proc{|pokemon|
+   next if pokemon.form==0
+   next 1.1
+},
+"getMoveList"=>proc{|pokemon|
+   next if pokemon.form==0
+   movelist=[]
+   case pokemon.form
+   when 1; movelist=[[1,:COUNTER],[1,:REVERSAL],[1,:TAUNT],[1,:TACKLE],[1,:LEER],
+                     [4,:SANDATTACK],[7,:BITE],[12,:HOWL],[15,:ROCKTHROW],
+                     [18,:ODORSLEUTH],[23,:ROCKTOMB],[26,:ROAR],[29,:STEALTHROCK],
+                     [34,:ROCKSLIDE],[37,:SCARYFACE],[40,:CRUNCH],[45,:ROCKCLIMB],
+                     [48,:STONEEDGE]]
+   end
+   for i in movelist
+     i[1]=getConst(PBMoves,i[1])
+   end
+   next movelist
+},
+"dexEntry"=>proc{|pokemon|
+   next if pokemon.form==0
+   next _INTL("The more intimidating the opponent it faces, the more this Pokémon's blood boils. It will disregard its own safety.")
+}
+})

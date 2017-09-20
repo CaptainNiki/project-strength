@@ -1,0 +1,118 @@
+# Underneath Arceus (Or Darmanitan) in PokeBattle_Battler, copy this (Be sure to have pasted in all the MultipleForms!):
+
+    # Silvally
+    if isConst?(self.ability,PBAbilities,:RKSSYSTEM) &&
+       isConst?(self.species,PBSpecies,:SILVALLY)
+      if self.form!=@pokemon.form
+        self.form=@pokemon.form
+        transformed=true
+      end
+    end
+
+
+# In PokeBattle_MoveEffects, find Knock Off (Find the following line):
+      if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD)
+# And change it to this:
+      if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD) || opponent.hasWorkingAbility(:RKSSYSTEM)
+
+# Do the exact same for Switcheroo (Trick):
+    if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD)
+    if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD) || opponent.hasWorkingAbility(:RKSSYSTEM)
+
+
+# Add this in the list under Role Play:
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Add this in the list of Gastro Acid:
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Add this in the list under Worry Seed:
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Add this under the list of Simple Beam:
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Add this under the list of Entrainment:
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Add the following lines under Skill Swap:
+       isConst?(attacker.ability,PBAbilities,:RKSSYSTEM) ||
+       isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# Go to PokeBattle_Battler and add the following line under Trace:
+             !isConst?(abil,PBAbilities,:RKSSYSTEM)
+
+
+# Find Mummy in PokeBattle_Battler and add the following line:
+             !isConst?(user.ability,PBAbilities,:RKSSYSTEM)
+
+
+
+
+# Find this line:
+    if isConst?(opponent.ability,PBAbilities,:MULTITYPE)
+# And replace it with this:
+    if isConst?(opponent.ability,PBAbilities,:MULTITYPE) || isConst?(opponent.ability,PBAbilities,:RKSSYSTEM)
+
+
+# 
+
+
+# Find Covet (Thief) in PokeBattle_MoveEffects and replace it with this:
+
+################################################################################
+# User steals the target's item, if the user has none itself. (Covet, Thief)
+# Items stolen from wild Pokémon are kept after the battle.
+################################################################################
+class PokeBattle_Move_0F1 < PokeBattle_Move
+  def pbEffectAfterHit(attacker,opponent,turneffects)
+    if !attacker.isFainted? && !opponent.isFainted? && opponent.item!=0 &&
+       opponent.damagestate.calcdamage>0 && !opponent.damagestate.substitute
+      if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD)
+        abilityname=PBAbilities.getName(opponent.ability)
+        @battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",opponent.pbThis,abilityname,@name))
+      elsif opponent.hasWorkingAbility(:RKSSYSTEM) &&
+            opponent.hasWorkingItem(:FIGHTINGMEMORY) ||
+            opponent.hasWorkingItem(:FLYINGMEMORY) ||
+            opponent.hasWorkingItem(:POISONMEMORY) ||
+            opponent.hasWorkingItem(:GROUNDMEMORY) ||
+            opponent.hasWorkingItem(:ROCKMEMORY) ||
+            opponent.hasWorkingItem(:BUGMEMORY) ||
+            opponent.hasWorkingItem(:GHOSTMEMORY) ||
+            opponent.hasWorkingItem(:STEELMEMORY) ||
+            opponent.hasWorkingItem(:FIREMEMORY) ||
+            opponent.hasWorkingItem(:WATERMEMORY) ||
+            opponent.hasWorkingItem(:GRASSMEMORY) ||
+            opponent.hasWorkingItem(:ELECTRICMEMORY) ||
+            opponent.hasWorkingItem(:PSYCHICMEMORY) ||
+            opponent.hasWorkingItem(:ICEMEMORY) ||
+            opponent.hasWorkingItem(:DRAGONMEMORY) ||
+            opponent.hasWorkingItem(:DARKMEMORY) ||
+            opponent.hasWorkingItem(:FAIRYMEMORY)
+        @battle.pbDisplay(_INTL("{1}'s {2} can't be stolen!",opponent.pbThis,PBItems.getName(opponent.item)))
+      elsif !@battle.pbIsUnlosableItem(opponent,opponent.item) &&
+            !@battle.pbIsUnlosableItem(attacker,opponent.item) &&
+            attacker.item==0 &&
+            (@battle.opponent || !@battle.pbIsOpposing?(attacker.index))
+        itemname=PBItems.getName(opponent.item)
+        attacker.item=opponent.item
+        opponent.item=0
+        opponent.effects[PBEffects::ChoiceBand]=-1
+        opponent.effects[PBEffects::Unburden]=true
+        if !@battle.opponent && # In a wild battle
+           attacker.pokemon.itemInitial==0 &&
+           opponent.pokemon.itemInitial==attacker.item
+          attacker.pokemon.itemInitial=attacker.item
+          opponent.pokemon.itemInitial=0
+        end
+        @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",attacker.pbThis,opponent.pbThis(true),itemname))
+      end
+    end
+  end
+end

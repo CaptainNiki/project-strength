@@ -1,0 +1,50 @@
+# Copy this to make a new effect in PBEffects:
+
+    BattleBond         = 110 # Change this number to the lowest number you can go, it depends on how many effects you have.
+
+
+# Find the following Effects in PokeBattle_Battler:
+    @effects[PBEffects::Revenge]          = 0
+    @effects[PBEffects::Roar]             = false
+    @effects[PBEffects::Rollout]          = 0
+    @effects[PBEffects::Roost]            = false
+    @effects[PBEffects::BurnUp]           = false
+
+# and paste this somewhere in that list:
+
+    @effects[PBEffects::BattleBond]       = 0
+
+
+# Copy this under Darmanitan's Zen Mode (in PokeBattle_Battler):
+
+    # Greninja
+    if isConst?(self.species,PBSpecies,:GRENINJA) && self.hasWorkingAbility(:BATTLEBOND)
+      user=self
+      if user.effects[PBEffects::BattleBond]==1 && self.form==0
+        self.form=1; transformed=true
+      end
+    end
+
+
+
+# Copy this underneath Moxie (Also in PokeBattle_Battler):
+
+    # Battle Bond
+    if isConst?(user.species,PBSpecies,:GRENINJA) && user.hasWorkingAbility(:BATTLEBOND)
+      if target.isFainted? && !user.isFainted? && user.form==0
+        party=@battle.pbParty(target.index)
+        if party.length>1
+          PBDebug.log("[Ability triggered] #{user.pbThis}'s Battle Bond")
+          @effects[PBEffects::BattleBond]=1
+        end
+      end
+    end
+
+
+# Next, copy this in the list under pbResetForm:
+
+         isConst?(self.species,PBSpecies,:GRENINJA)
+
+
+# If this is your last pbResetForm Pokémon, do NOT put ||, if it isn't, DO put them! If it is your last Pokémon here,
+# make sure the line above you, the original last, has ||!

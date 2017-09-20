@@ -1,0 +1,118 @@
+# Find the classes for Electric, Grassy, Misty, and Psychic Terrain in PokeBattle_MoveEffects and replace them with this:
+
+################################################################################
+# For 5 rounds, creates a psychic terrain which boosts Psychic-type moves and
+# protects Pokémon from priority moves. Affects non-airborne Pokémon only.
+# (Psychic Terrain)
+################################################################################
+class PokeBattle_Move_159 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @battle.field.effects[PBEffects::PsychicTerrain]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.field.effects[PBEffects::ElectricTerrain]=0
+    @battle.field.effects[PBEffects::MistyTerrain]=0
+    @battle.field.effects[PBEffects::GrassyTerrain]=0
+    if attacker.hasWorkingItem(:TERRAINEXTENDER)
+      @battle.field.effects[PBEffects::PsychicTerrain]=8
+    else
+      @battle.field.effects[PBEffects::PsychicTerrain]=5
+    end
+    @battle.pbDisplay(_INTL("The battlefield got weird!"))
+    if attacker.hasWorkingItem(:PSYCHICSEED)
+      if attacker.pbIncreaseStatWithCause(PBStats::SPDEF,1,attacker,PBItems.getName(attacker.item))
+        attacker.pbConsumeItem
+      end
+    end
+    return 0
+  end
+end
+################################################################################
+# For 5 rounds, creates a misty terrain which weakens Dragon-type moves and
+# protects Pokémon from status problems. Affects non-airborne Pokémon only.
+# (Misty Terrain)
+################################################################################
+class PokeBattle_Move_156 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @battle.field.effects[PBEffects::MistyTerrain]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.field.effects[PBEffects::ElectricTerrain]=0
+    @battle.field.effects[PBEffects::GrassyTerrain]=0
+    @battle.field.effects[PBEffects::PsychicTerrain]=0
+    if attacker.hasWorkingItem(:TERRAINEXTENDER)
+      @battle.field.effects[PBEffects::MistyTerrain]=8
+    else
+      @battle.field.effects[PBEffects::MistyTerrain]=5
+    end
+    @battle.pbDisplay(_INTL("Mist swirled about the battlefield!"))
+    if attacker.hasWorkingItem(:MISTYSEED)
+      if attacker.pbIncreaseStatWithCause(PBStats::SPDEF,1,attacker,PBItems.getName(attacker.item))
+        attacker.pbConsumeItem
+      end
+    end
+    return 0
+  end
+end
+################################################################################
+# For 5 rounds, creates a grassy terrain which boosts Grass-type moves and heals
+# Pokémon at the end of each round. Affects non-airborne Pokémon only.
+# (Grassy Terrain)
+################################################################################
+class PokeBattle_Move_155 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.field.effects[PBEffects::ElectricTerrain]=0
+    @battle.field.effects[PBEffects::MistyTerrain]=0
+    @battle.field.effects[PBEffects::PsychicTerrain]=0
+    if attacker.hasWorkingItem(:TERRAINEXTENDER)
+      @battle.field.effects[PBEffects::GrassyTerrain]=8
+    else
+      @battle.field.effects[PBEffects::GrassyTerrain]=5
+    end
+    @battle.pbDisplay(_INTL("Grass grew to cover the battlefield!"))
+    if attacker.hasWorkingItem(:GRASSYSEED)
+      if attacker.pbIncreaseStatWithCause(PBStats::DEFENSE,1,attacker,PBItems.getName(attacker.item))
+        attacker.pbConsumeItem
+      end
+    end
+    return 0
+  end
+end
+################################################################################
+# For 5 rounds, creates an electric terrain which boosts Electric-type moves and
+# prevents Pokémon from falling asleep. Affects non-airborne Pokémon only.
+# (Electric Terrain)
+################################################################################
+class PokeBattle_Move_154 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @battle.field.effects[PBEffects::ElectricTerrain]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.field.effects[PBEffects::GrassyTerrain]=0
+    @battle.field.effects[PBEffects::MistyTerrain]=0
+    @battle.field.effects[PBEffects::PsychicTerrain]=0
+    if attacker.hasWorkingItem(:TERRAINEXTENDER)
+      @battle.field.effects[PBEffects::ElectricTerrain]=8
+    else
+      @battle.field.effects[PBEffects::ElectricTerrain]=5
+    end
+    @battle.pbDisplay(_INTL("An electric current runs across the battlefield!"))
+    if attacker.hasWorkingItem(:ELECTRICSEED)
+      if attacker.pbIncreaseStatWithCause(PBStats::DEFENSE,1,attacker,PBItems.getName(attacker.item))
+        attacker.pbConsumeItem
+      end
+    end
+    return 0
+  end
+end

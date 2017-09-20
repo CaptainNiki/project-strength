@@ -1,0 +1,30 @@
+# Copy this underneath Leftovers in PokeBattler_Battler (Oricorio's Seeds):
+
+    # Electric Seed
+    if self.hasWorkingItem(:ELECTRICSEED) && @battle.field.effects[PBEffects::ElectricTerrain]>0
+      if self.pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBItems.getName(self.item))
+        PBDebug.log("[Item triggered] #{self.pbThis}'s #{PBItems.getName(self.item)}")
+        self.pbConsumeItem
+      end
+    end
+    # Misty Seed
+    if self.hasWorkingItem(:MISTYSEED) && @battle.field.effects[PBEffects::MistyTerrain]>0
+      if self.pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBItems.getName(self.item))
+        PBDebug.log("[Item triggered] #{self.pbThis}'s #{PBItems.getName(self.item)}")
+        self.pbConsumeItem
+      end
+    end
+    # Grassy Seed
+    if self.hasWorkingItem(:GRASSYSEED) && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      if self.pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBItems.getName(self.item))
+        PBDebug.log("[Item triggered] #{self.pbThis}'s #{PBItems.getName(self.item)}")
+        self.pbConsumeItem
+      end
+    end
+    # Psychic Seed
+    if self.hasWorkingItem(:PSYCHICSEED) && @battle.field.effects[PBEffects::PsychicTerrain]>0
+      if self.pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBItems.getName(self.item))
+        PBDebug.log("[Item triggered] #{self.pbThis}'s #{PBItems.getName(self.item)}")
+        self.pbConsumeItem
+      end
+    end

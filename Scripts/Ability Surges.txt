@@ -1,0 +1,63 @@
+# Creating the Island Guardian's Surge abilities, Copy this above Intimidate in PokeBattle_Battler.
+# * NOTE: You need to already have Psychic Terrain defined and working. You can look it up on Pokecommunity.
+
+    # Electric Surge
+    if self.hasWorkingAbility(:ELECTRICSURGE) && onactive
+      if @battle.field.effects[PBEffects::ElectricTerrain]<1
+        @battle.pbCommonAnimation("ELECTRICTERRAIN",self,nil)
+        @battle.field.effects[PBEffects::MistyTerrain]=0
+        @battle.field.effects[PBEffects::GrassyTerrain]=0
+        @battle.field.effects[PBEffects::PsychicTerrain]=0
+        @battle.field.effects[PBEffects::ElectricTerrain]=5
+        @battle.pbDisplay(_INTL("The battlefield got weird!"))
+        if self.hasWorkingItem(:ELECTRICSEED)
+          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBItems.getName(item))
+          end
+        end
+      end
+    end
+    # Misty Surge
+    if self.hasWorkingAbility(:MISTYSURGE) && onactive
+      if @battle.field.effects[PBEffects::MistyTerrain]<1
+        @battle.pbCommonAnimation("MISTYTERRAIN",self,nil)
+        @battle.field.effects[PBEffects::ElectricTerrain]=0
+        @battle.field.effects[PBEffects::GrassyTerrain]=0
+        @battle.field.effects[PBEffects::PsychicTerrain]=0
+        @battle.field.effects[PBEffects::MistyTerrain]=5
+        @battle.pbDisplay(_INTL("The battlefield got weird!"))
+        if self.hasWorkingItem(:MISTYSEED)
+          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBItems.getName(item))
+          end
+        end
+      end
+    end
+    # Grassy Surge
+    if self.hasWorkingAbility(:GRASSYSURGE) && onactive
+      if @battle.field.effects[PBEffects::GrassyTerrain]<1
+        @battle.pbCommonAnimation("GRASSYTERRAIN",self,nil)
+        @battle.field.effects[PBEffects::ElectricTerrain]=0
+        @battle.field.effects[PBEffects::MistyTerrain]=0
+        @battle.field.effects[PBEffects::PsychicTerrain]=0
+        @battle.field.effects[PBEffects::GrassyTerrain]=5
+        @battle.pbDisplay(_INTL("The battlefield got weird!"))
+        if self.hasWorkingItem(:GRASSYSEED)
+          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBItems.getName(item))
+          end
+        end
+      end
+    end
+    # Psychic Surge
+    if self.hasWorkingAbility(:PSYCHICSURGE) && onactive
+      if @battle.field.effects[PBEffects::PsychicTerrain]<1
+        @battle.pbCommonAnimation("PSYCHICTERRAIN",self,nil)
+        @battle.field.effects[PBEffects::ElectricTerrain]=0
+        @battle.field.effects[PBEffects::MistyTerrain]=0
+        @battle.field.effects[PBEffects::GrassyTerrain]=0
+        @battle.field.effects[PBEffects::PsychicTerrain]=5
+        @battle.pbDisplay(_INTL("The battlefield got weird!"))
+        if self.hasWorkingItem(:PSYCHICSEED)
+          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBItems.getName(item))
+          end
+        end
+      end
+    end

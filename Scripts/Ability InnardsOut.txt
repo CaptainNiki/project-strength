@@ -1,0 +1,10 @@
+# Copy this underneath Aftermath in PokeBattle_Battler:
+
+        if target.hasWorkingAbility(:INNARDSOUT,true) && target.isFainted? &&
+           !user.isFainted?
+            PBDebug.log("[Ability triggered] #{target.pbThis}'s Innards Out")
+            @battle.scene.pbDamageAnimation(user,0)
+            user.pbReduceHP(target.lastHPLost)
+            @battle.pbDisplay(_INTL("{1} was hurt by {2}'s {3}!",user.pbThis,
+               target.pbThis,PBAbilities.getName(target.ability)))
+        end

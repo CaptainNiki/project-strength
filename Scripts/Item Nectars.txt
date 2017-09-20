@@ -1,0 +1,66 @@
+# Put this code underneath ItemHandlers::UseOnPokemon.add(:GRACIDEA),proc{|item,pokemon,scene| in PItem_ItemEffects:
+# Oricorio's Nectars
+
+ItemHandlers::UseOnPokemon.add(:REDNECTAR,proc{|item,pokemon,scene|
+   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=0
+     if pokemon.hp>0
+       pokemon.form=0
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("{1} changed Forme!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("This can't be used on a fainted Pokémon."))
+     end
+   else
+     scene.pbDisplay(_INTL("It had no effect."))
+     next false
+   end
+})
+
+ItemHandlers::UseOnPokemon.add(:YELLOWNECTAR,proc{|item,pokemon,scene|
+   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=1
+     if pokemon.hp>0
+       pokemon.form=1
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("{1} changed Forme!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("This can't be used on a fainted Pokémon."))
+     end
+   else
+     scene.pbDisplay(_INTL("It had no effect."))
+     next false
+   end
+})
+
+ItemHandlers::UseOnPokemon.add(:PINKNECTAR,proc{|item,pokemon,scene|
+   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=2
+     if pokemon.hp>0
+       pokemon.form=2
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("{1} changed Forme!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("This can't be used on a fainted Pokémon."))
+     end
+   else
+     scene.pbDisplay(_INTL("It had no effect."))
+     next false
+   end
+})
+
+ItemHandlers::UseOnPokemon.add(:PURPLENECTAR,proc{|item,pokemon,scene|
+   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=3
+     if pokemon.hp>0
+       pokemon.form=3
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("{1} changed Forme!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("This can't be used on a fainted Pokémon."))
+     end
+   else
+     scene.pbDisplay(_INTL("It had no effect."))
+     next false
+   end
+})

@@ -1,0 +1,23 @@
+Drag and drop the audio files in their corresponding files (ME Zygarde -> ME, for example).
+The PBS text should be copied underneath your own PBS file (Make sure numbers don't overlap).
+Battler sprites will only work if you are using Luka S.J.'s Elite Battle System.
+
+When using anything of this pack, be sure to credit the following people/organisations:
+
+- Zeak6464
+- TapuFini
+- SpartaLazor
+- leparagon
+- Bulbapedia
+- Serebii
+- M3rein
+- BlackOutG5
+- Rune
+
+Credit for some code:
+- Rigbycwts
+- Rot8er_ConeX
+- James Davy
+- Luka S.J.
+
+Besides that, you may use these however you want!
