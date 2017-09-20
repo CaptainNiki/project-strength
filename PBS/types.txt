@@ -117,17 +117,3 @@ IsSpecialType=true
 Weaknesses=FIGHTING,BUG
 Resistances=GHOST,DARK
 Immunities=PSYCHIC
-
-[18]
-Name=Shadow
-InternalName=SHADOW
-IsSpecialType=true
-Resistances=SHADOW
-
-[19]
-Name=Fairy
-InternalName=FAIRY
-IsSpecialType=true
-Weaknesses=POISON,STEEL
-Resistances=FIGHTING,BUG,DARK
-Immunities=DRAGON
