@@ -1,0 +1,18 @@
+Gym 3
+- the player has the mission to invade sword hideout
+- the player meets dark faction 1
+- the player meets the rival
+
+Gym 4
+- the player has the mission to invade shield hideout
+- the player meets dark faction 2
+
+Gym 5
+- the player obtains access to staff hideout, the rival is in it
+- the player fights back sword invasion
+- the player meets dark faction 1
+- the player meets dark faction 2
+
+Gym 6
+- the player has the choice to join a dark faction
+

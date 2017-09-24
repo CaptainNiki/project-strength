@@ -1,0 +1,22 @@
+Gym 3
+- the player has the mission to invade sword hideout
+- the player meets dark faction 1
+- the player meets the rival
+
+Gym 4
+- the player obtains access to shield hideout
+- the player fights back staff invasion
+- the player meets dark faction 2
+
+Gym 5
+- the player has the mission to invade staff hideout, the rival is in it
+- the player meets dark faction 1
+- the player meets dark faction 2
+
+Gym 6
+- the player has the choice to join a dark faction
+
+BRANCH 1 - joins dark faction 1
+BRANCH 2 - joins dark faction 2
+BRANCH 3 - joins neither of them, siding then with dream factions
+BRANCH 4 - joins neither of them, not caring about any faction group

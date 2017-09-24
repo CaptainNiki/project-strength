@@ -1,0 +1,17 @@
+gym 6
+- the dream union is created
+- the player and dream union joins dark faction 1 to attack dark faction 2
+- the player meets the rival
+
+gym 7
+- the player and dream union joins dark faction 2 to attack dark faction 1
+- the dark union is created
+
+gym 8
+- the player meets the rival
+- the player sides with dream union vs dark union
+-whatever
+
+league
+
+ending

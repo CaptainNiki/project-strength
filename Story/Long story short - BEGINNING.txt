@@ -1,0 +1,21 @@
+beginning
+- the player meets the dream factions
+- the player meets the rival
+
+gym 1
+- the player meets the dark faction 1
+- the player meets again the dream factions, doing stuff to know them better
+
+gym 2
+- the player meets the rival
+- the player meets the dark faction 2
+- the player will has the choice to join a dream faction
+
+BRANCH A = JOIN SWORD
+BRANCH B = JOIN SHIELD
+BRANCH C = JOIN STAFF
+BRANCH D = JOIN NONE
+
+Swords hideout ---> after gym 3
+Shield hideout ---> after gym 4
+Staff hideout ----> after gym 5
